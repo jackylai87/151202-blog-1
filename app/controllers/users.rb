@@ -41,8 +41,18 @@ get '/users/:id' do
 	erb :'user/show'
 end
 
+# View login page
 
+get '/users' do
+	erb :'user/index'
+end
 
+# User login
+
+post '/users/login' do
+	user = User.find_by(email: params[:email], password: params[:password])
+	redirect "/users/#{user.id}"
+end
 
 
 
