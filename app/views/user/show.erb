@@ -9,3 +9,7 @@ Description:  <%= @user.description %><br>
 	<input type="hidden" name="_method" value="delete">
 	<input type="submit" value="Delete">
 </form>
+
+<% @user.posts.each do |post| %>
+	<a href="/posts/<%= post.id %>"><%= post.title %></a>
+<% end %>
