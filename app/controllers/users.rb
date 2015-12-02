@@ -21,13 +21,17 @@ end
 # Update user
 
 patch '/users/:id' do
-
+	user = User.find(params[:id])
+	user.update(name: params[:name], email: params[:email], password: params[:password], description: params[:description])
+	redirect "/users/#{user.id}"
 end
 
 # Delete user
 
 delete '/users/:id' do
-
+	user = User.find(params[:id])
+	user.destroy
+	erb :'static/index'
 end
 
 # View user profile
