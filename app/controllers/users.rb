@@ -1,3 +1,18 @@
+# User login
+
+post '/users/login' do
+	user = User.find_by(email: params[:email], password: params[:password])
+	session[:user_id] = user.id
+	redirect "/users/#{user.id}"
+end
+
+# User logout
+
+get '/users/logout' do
+	session[:user_id] = nil
+	redirect '/'
+end
+
 # Display new user form
 
 get '/users/new' do
@@ -46,28 +61,3 @@ end
 get '/users' do
 	erb :'user/index'
 end
-
-# User login
-
-post '/users/login' do
-	user = User.find_by(email: params[:email], password: params[:password])
-	session[:user_id] = user.id
-	redirect "/users/#{user.id}"
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
